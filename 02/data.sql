@@ -1,0 +1,23 @@
+INSERT INTO books
+(title, author, publisher, category, language, price, stock, published_year)
+VALUES
+('Clean Code', 'Robert C. Martin', 'Prentice Hall', 'Programming', 'English', 850, 15, 2008),
+('The Pragmatic Programmer', 'Andrew Hunt', 'Addison-Wesley', 'Programming', 'English', 1100, 8, 1999),
+('Python Crash Course', 'Eric Matthes', 'No Starch Press', 'Programming', 'English', 950, 10, 2023),
+('Design Patterns', 'Erich Gamma', 'Addison-Wesley', 'Programming', 'English', 1350, 5, 1994),
+('Atomic Habits', 'James Clear', 'Avery', 'Self Help', 'English', 480, 25, 2018),
+('Deep Work', 'Cal Newport', 'Grand Central', 'Productivity', 'English', 520, 12, 2016),
+('The Psychology of Money', 'Morgan Housel', 'Harriman House', 'Finance', 'English', 450, 18, 2020),
+('Rich Dad Poor Dad', 'Robert Kiyosaki', 'Plata Publishing', 'Finance', 'English', 390, 30, 1997),
+('Sapiens', 'Yuval Noah Harari', 'Harper', 'History', 'English', 720, 14, 2015),
+('A Brief History of Time', 'Stephen Hawking', 'Bantam Books', 'Science', 'English', 650, 9, 1988),
+('Refactoring', 'Martin Fowler', 'Addison-Wesley', 'Programming', 'English', 1250, 4, 2018),
+('Effective Java', 'Joshua Bloch', 'Addison-Wesley', 'Programming', 'English', 1400, 6, 2018),
+('The Clean Coder', 'Robert C. Martin', 'Prentice Hall', 'Programming', 'English', 790, 11, 2011),
+('Thinking, Fast and Slow', 'Daniel Kahneman', 'Farrar, Straus and Giroux', 'Psychology', 'English', 560, 13, 2011),
+('The Almanack of Naval Ravikant', 'Eric Jorgenson', 'Magrathea', 'Self Help', 'English', 430, 20, 2020),
+('Introduction to Algorithms', 'Thomas H. Cormen', 'MIT Press', 'Programming', 'English', 1850, 7, 2022),
+('Zero to One', 'Peter Thiel', 'Crown Business', 'Business', 'English', 510, 17, 2014),
+('The Lean Startup', 'Eric Ries', 'Crown Business', 'Business', 'English', 620, 16, 2011),
+('1984', 'George Orwell', 'Secker & Warburg', 'Novel', 'English', 350, 22, 1949),
+('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', 'Fantasy', 'English', 580, 19, 1937);
