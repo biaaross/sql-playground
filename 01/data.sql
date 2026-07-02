@@ -1,0 +1,22 @@
+INSERT INTO books(book_id, title, author, publisher, category, price, stock, published_year, language)
+VALUES
+(1, 'Clean Code', 'Robert C. Martin', 'Prentice Hall', 'Programming', 850, 15, 2008, 'English'),
+(2, 'The Pragmatic Programmer', 'Andrew Hunt', 'Addison-Wesley', 'Programming', 1100, 8, 1999, 'English'),
+(3, 'Python Crash Course', 'Eric Matthes', 'No Starch Press', 'Programming', 950, 10, 2023, 'English'),
+(4, 'Design Patterns', 'Gang of Four', 'Addison-Wesley', 'Programming', 1350, 5, 1994, 'English'),
+(5, 'Atomic Habits', 'James Clear', 'Avery', 'Self Help', 480, 25, 2018, 'English'),
+(6, 'Deep Work', 'Cal Newport', 'Grand Central', 'Productivity', 520, 12, 2016, 'English'),
+(7, 'The Psychology of Money', 'Morgan Housel', 'Harriman House', 'Finance', 450, 18, 2020, 'English'),
+(8, 'Rich Dad Poor Dad', 'Robert Kiyosaki', 'Plata Publishing', 'Finance', 390, 30, 1997, 'English'),
+(9, 'Sapiens', 'Yuval Noah Harari', 'Harper', 'History', 720, 14, 2015, 'English'),
+(10, 'A Brief History of Time', 'Stephen Hawking', 'Bantam Books', 'Science', 650, 9, 1988, 'English'),
+(11, 'Refactoring', 'Martin Fowler', 'Addison-Wesley', 'Programming', 1250, 4, 2018, 'English'),
+(12, 'Effective Java', 'Joshua Bloch', 'Addison-Wesley', 'Programming', 1400, 6, 2018, 'English'),
+(13, 'The Clean Coder', 'Robert C. Martin', 'Prentice Hall', 'Programming', 790, 11, 2011, 'English'),
+(14, 'Thinking Fast and Slow', 'Daniel Kahneman', 'Farrar, Straus and Giroux', 'Psychology', 560, 13, 2011, 'English'),
+(15, 'The Almanack of Naval Ravikant', 'Eric Jorgenson', 'Magrathea', 'Self Help', 430, 20, 2020, 'English'),
+(16, 'Introduction to Algorithms', 'Thomas H. Cormen', 'MIT Press', 'Programming', 1850, 7, 2022, 'English'),
+(17, 'Zero to One', 'Peter Thiel', 'Crown Business', 'Business', 510, 17, 2014, 'English'),
+(18, 'The Lean Startup', 'Eric Ries', 'Crown Business', 'Business', 620, 16, 2011, 'English'),
+(19, '1984', 'George Orwell', 'Secker & Warburg', 'Novel', 350, 22, 1949, 'English'),
+(20, 'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', 'Fantasy', 580, 19, 1937, 'English');
