@@ -1,503 +1,177 @@
 -- ==========================================================
--- GÖREV 1
--- Students Above the Overall Average
---
--- Find the students whose grade is higher than the overall
--- average grade of all enrollments.
---
--- Show:
--- - Student Name
--- - Course Name
--- - Grade
---
--- Requirements:
--- - Use a Scalar Subquery.
--- - Do NOT use GROUP BY.
---
--- Order by:
--- 1. Grade (Highest to Lowest)
--- 2. Student Name (A-Z)
+-- INSERT DATA
+-- SQL Subqueries Practice Project
 -- ==========================================================
 
-SELECT
-    s.full_name AS student_name,
-    c.course_name,
-    e.grade
-
-FROM Students AS s
-
-INNER JOIN Enrollments AS e
-    ON s.student_id = e.student_id
-
-INNER JOIN Courses AS c
-    ON e.course_id = c.course_id
-
-WHERE
-    e.grade >
-    (
-        SELECT AVG(grade)
-        FROM Enrollments
-    )
-
-ORDER BY
-    e.grade DESC,
-    student_name ASC;
-
-
-
-    -- ==========================================================
--- GÖREV 2
--- Courses Above the Average Credit
---
--- Find the courses whose credit is higher than the average
--- credit of all courses.
---
--- Show:
--- - Course Name
--- - Credit
--- - Department Name
---
--- Requirements:
--- - Use a Scalar Subquery.
--- - Do NOT use GROUP BY.
---
--- Order by:
--- 1. Credit (Highest to Lowest)
--- 2. Course Name (A-Z)
+-- ==========================================================
+-- Departments
 -- ==========================================================
 
-SELECT
-    c.course_name,
-    c.credit,
-    d.department_name
+INSERT INTO Departments (department_name)
+VALUES
+('Computer Engineering'),
+('Software Engineering'),
+('Electrical Engineering'),
+('Mechanical Engineering'),
+('Civil Engineering');
 
-FROM Courses AS c
+-- ==========================================================
+-- Instructors
+-- ==========================================================
 
-INNER JOIN Departments AS d
-    ON c.department_id = d.department_id
-
-WHERE
-    c.credit >
-    (
-        SELECT AVG(credit)
-        FROM Courses
-    )
-
-ORDER BY
-    c.credit DESC,
-    c.course_name ASC;
-
+INSERT INTO Instructors (instructor_name)
+VALUES
+('Dr. Ahmet Yılmaz'),
+('Dr. Ayşe Demir'),
+('Dr. Mehmet Kaya'),
+('Dr. Elif Şahin'),
+('Dr. Hasan Çelik'),
+('Dr. Zeynep Aydın');
 
 
 -- ==========================================================
--- GÖREV 3
--- Students Above the Overall Average Grade
---
--- Calculate the GPA of each student and list only the
--- students whose GPA is higher than the overall average
--- grade of all enrollments.
---
--- Show:
--- - Student Name
--- - GPA
---
--- Requirements:
--- - Use GROUP BY
--- - Use HAVING
--- - Use a Scalar Subquery
---
--- Order by:
--- 1. GPA (Highest to Lowest)
--- 2. Student Name (A-Z)
+-- Students
 -- ==========================================================
 
-SELECT
-    s.full_name AS student_name,
-    ROUND(AVG(e.grade), 2) AS gpa
+INSERT INTO Students (full_name, city)
+VALUES
+('Ali Yılmaz', 'Ankara'),
+('Ayşe Demir', 'İstanbul'),
+('Mehmet Kaya', 'İzmir'),
+('Fatma Şahin', 'Bursa'),
+('Can Özkan', 'Ankara'),
+('Zeynep Arslan', 'Samsun'),
+('Mert Çelik', 'Trabzon'),
+('Elif Aydın', 'Antalya'),
+('Burak Koç', 'Konya'),
+('Ece Yıldız', 'Eskişehir'),
+('Emre Kurt', 'Kayseri'),
+('Sena Aksoy', 'Adana'),
+('Kerem Güneş', 'Gaziantep'),
+('Melisa Erdem', 'Mersin'),
+('Onur Karaca', 'Ankara'),
+('Buse Yıldırım', 'İstanbul'),
+('Kaan Polat', 'İzmir'),
+('Derya Kılıç', 'Trabzon'),
+('Oğuz Demirtaş', 'Samsun'),
+('Ceren Acar', 'Bursa');
 
-FROM Students AS s
 
-INNER JOIN Enrollments AS e
-    ON s.student_id = e.student_id
+-- ==========================================================
+-- Courses
+-- ==========================================================
 
-GROUP BY
-    s.student_id,
-    s.full_name
+INSERT INTO Courses
+(course_name, credit, department_id, instructor_id)
+VALUES
 
-HAVING
-    AVG(e.grade) >
-    (
-        SELECT AVG(grade)
-        FROM Enrollments
-    )
+-- Computer Engineering
+('Database Systems',          4, 1, 1),
+('Data Structures',           5, 1, 1),
+('Operating Systems',         4, 1, 2),
 
-ORDER BY
-    gpa DESC,
-    student_name ASC;
+-- Software Engineering
+('Python Programming',        3, 2, 2),
+('Web Development',           4, 2, 3),
+('Software Engineering',      5, 2, 3),
+
+-- Electrical Engineering
+('Circuit Analysis',          4, 3, 4),
+('Digital Electronics',       3, 3, 4),
+('Microprocessors',           5, 3, 5),
+
+-- Mechanical Engineering
+('Thermodynamics',            4, 4, 5),
+('Machine Design',            5, 4, 6),
+
+-- Civil Engineering
+('Statics',                   3, 5, 6),
+('Construction Management',   4, 5, 1);
 
 
 
 -- ==========================================================
--- GÖREV 4
--- Courses Above the Average Credit
---
--- List the courses whose credit is greater than the average
--- credit of all courses.
---
--- Show:
--- - Course Name
--- - Credit
--- - Instructor Name
---
--- Requirements:
--- - Use a Scalar Subquery.
--- - Do NOT use GROUP BY.
---
--- Order by:
--- 1. Credit (Highest to Lowest)
--- 2. Course Name (A-Z)
+-- Enrollments
 -- ==========================================================
 
-SELECT
-    c.course_name,
-    c.credit,
-    i.instructor_name
+INSERT INTO Enrollments (student_id, course_id, semester, grade)
+VALUES
+(1, 1, '2025-Fall', 85),
+(1, 2, '2025-Fall', 90),
+(1, 4, '2025-Fall', 88),
 
-FROM Courses AS c
+(2, 1, '2025-Fall', 72),
+(2, 5, '2025-Fall', 78),
+(2, 6, '2025-Fall', 81),
 
-INNER JOIN Instructors AS i
-    ON c.instructor_id = i.instructor_id
+(3, 2, '2025-Fall', 95),
+(3, 3, '2025-Fall', 91),
+(3, 7, '2025-Fall', 89),
 
-WHERE
-    c.credit >
-    (
-        SELECT AVG(credit)
-        FROM Courses
-    )
+(4, 4, '2025-Fall', 68),
+(4, 5, '2025-Fall', 73),
+(4, 8, '2025-Fall', 70),
 
-ORDER BY
-    c.credit DESC,
-    c.course_name ASC;
+(5, 1, '2025-Fall', 84),
+(5, 6, '2025-Fall', 87),
+(5, 9, '2025-Fall', 82),
 
+(6, 7, '2025-Fall', 92),
+(6, 8, '2025-Fall', 90),
+(6, 9, '2025-Fall', 94),
 
+(7, 10, '2025-Fall', 75),
+(7, 11, '2025-Fall', 80),
+(7, 12, '2025-Fall', 77),
 
-    -- ==========================================================
--- GÖREV 5
--- Students Who Took Python Programming
---
--- Find all students who enrolled in the
--- "Python Programming" course.
---
--- Show:
--- - Student Name
--- - City
---
--- Requirements:
--- - Use a Multi-row Subquery with IN.
--- - Do NOT use JOIN in the main query.
--- - The course name must be found using a subquery.
---
--- Order by:
--- 1. Student Name (A-Z)
--- ==========================================================
+(8, 3, '2025-Fall', 88),
+(8, 4, '2025-Fall', 85),
+(8, 13, '2025-Fall', 91),
 
-SELECT
-    s.full_name AS student_name,
-    s.city
+(9, 5, '2025-Fall', 69),
+(9, 6, '2025-Fall', 71),
+(9, 10, '2025-Fall', 73),
 
-FROM Students AS s
+(10, 2, '2025-Fall', 83),
+(10, 8, '2025-Fall', 86),
+(10, 11, '2025-Fall', 88),
 
-WHERE s.student_id IN
-(
-    SELECT student_id
-    FROM Enrollments
-    WHERE course_id =
-    (
-        SELECT course_id
-        FROM Courses
-        WHERE course_name = 'Python Programming'
-    )
-)
+(11, 1, '2025-Fall', 79),
+(11, 9, '2025-Fall', 81),
+(11, 12, '2025-Fall', 76),
 
-ORDER BY
-    student_name ASC;
+(12, 3, '2025-Fall', 93),
+(12, 4, '2025-Fall', 90),
+(12, 5, '2025-Fall', 92),
 
+(13, 6, '2025-Fall', 65),
+(13, 7, '2025-Fall', 70),
+(13, 13, '2025-Fall', 68),
 
+(14, 2, '2025-Fall', 87),
+(14, 10, '2025-Fall', 89),
+(14, 11, '2025-Fall', 91),
 
-    -- ==========================================================
--- GÖREV 6
--- Students in the Software Engineering Department
---
--- Find all students who enrolled in any course offered
--- by the Software Engineering department.
---
--- Show:
--- - Student Name
--- - City
---
--- Requirements:
--- - Use Multi-row Subqueries.
--- - Use IN.
--- - Do NOT use JOIN in the main query.
--- - Do NOT hard-code department_id.
---
--- Order by:
--- 1. Student Name (A-Z)
--- ==========================================================
+(15, 1, '2025-Fall', 82),
+(15, 4, '2025-Fall', 84),
+(15, 9, '2025-Fall', 80),
 
--- ==========================================================
--- GÖREV 6
--- Students in the Software Engineering Department
---
--- Find all students who enrolled in any course offered
--- by the Software Engineering department.
---
--- Show:
--- - Student Name
--- - City
---
--- Requirements:
--- - Use Multi-row Subqueries.
--- - Use IN.
--- - Do NOT use JOIN in the main query.
--- - Do NOT hard-code department_id.
---
--- Order by:
--- 1. Student Name (A-Z)
--- ==========================================================
+(16, 3, '2025-Fall', 74),
+(16, 6, '2025-Fall', 76),
+(16, 12, '2025-Fall', 78),
 
-SELECT
-    s.full_name AS student_name,
-    s.city
+(17, 5, '2025-Fall', 96),
+(17, 8, '2025-Fall', 94),
+(17, 13, '2025-Fall', 97),
 
-FROM Students AS s
+(18, 2, '2025-Fall', 81),
+(18, 7, '2025-Fall', 84),
+(18, 10, '2025-Fall', 86),
 
-WHERE s.student_id IN
-(
-    SELECT student_id
-    FROM Enrollments
-    WHERE course_id IN
-    (
-        SELECT course_id
-        FROM Courses
-        WHERE department_id =
-        (
-            SELECT department_id
-            FROM Departments
-            WHERE department_name = 'Software Engineering'
-        )
-    )
-)
+(19, 11, '2025-Fall', 72),
+(19, 12, '2025-Fall', 75),
+(19, 13, '2025-Fall', 78),
 
-ORDER BY
-    student_name ASC;
-
-
-
--- ==========================================================
--- GÖREV 7
--- Students Who Never Took Database Systems
---
--- Find all students who have never enrolled in the
--- "Database Systems" course.
---
--- Show:
--- - Student Name
--- - City
---
--- Requirements:
--- - Use NOT IN.
--- - Use a Multi-row Subquery.
--- - Do NOT use JOIN in the main query.
--- - The course name must be found using a subquery.
---
--- Order by:
--- 1. Student Name (A-Z)
--- ==========================================================
-
-SELECT
-    s.full_name AS student_name,
-    s.city
-
-FROM Students AS s
-
-WHERE s.student_id NOT IN
-(
-    SELECT student_id
-    FROM Enrollments
-    WHERE course_id =
-    (
-        SELECT course_id
-        FROM Courses
-        WHERE course_name = 'Database Systems'
-    )
-)
-
-ORDER BY
-    student_name ASC;
-
-
-
--- ==========================================================
--- GÖREV 8
--- Students Above Their Course Average
---
--- Find the students whose grade is higher than the average
--- grade of the course they are enrolled in.
---
--- Show:
--- - Student Name
--- - Course Name
--- - Grade
---
--- Requirements:
--- - Use a Correlated Subquery.
--- - Do NOT use GROUP BY in the main query.
---
--- Order by:
--- 1. Grade (Highest to Lowest)
--- 2. Student Name (A-Z)
--- ==========================================================
-
-SELECT
-    s.full_name AS student_name,
-    c.course_name,
-    e.grade
-
-FROM Students AS s
-
-INNER JOIN Enrollments AS e
-    ON s.student_id = e.student_id
-
-INNER JOIN Courses AS c
-    ON e.course_id = c.course_id
-
-WHERE
-    e.grade >
-    (
-        SELECT AVG(e2.grade)
-        FROM Enrollments AS e2
-        WHERE e2.course_id = e.course_id
-    )
-
-ORDER BY
-    e.grade DESC,
-    student_name ASC;
-
-
-
--- ==========================================================
--- GÖREV 9
--- Students Above Their City Average
---
--- Find the students whose average grade is higher than
--- the average grade of students from the same city.
--- ==========================================================
-
-SELECT
-    s.full_name AS student_name,
-    s.city,
-    ROUND(AVG(e.grade), 2) AS gpa
-
-FROM Students AS s
-
-INNER JOIN Enrollments AS e
-    ON s.student_id = e.student_id
-
-GROUP BY
-    s.student_id,
-    s.full_name,
-    s.city
-
-HAVING
-    AVG(e.grade) >
-    (
-        SELECT AVG(e2.grade)
-        FROM Students AS s2
-
-        INNER JOIN Enrollments AS e2
-            ON s2.student_id = e2.student_id
-
-        WHERE s2.city = s.city
-    )
-
-ORDER BY
-    gpa DESC,
-    student_name ASC;
-
-
-
-    -- ==========================================================
--- GÖREV 10
--- Students With At Least One Enrollment
---
--- Find all students who have enrolled in at least
--- one course.
---
--- Show:
--- - Student Name
--- - City
---
--- Requirements:
--- - Use EXISTS.
--- - Use a Correlated Subquery.
--- - Do NOT use JOIN in the main query.
---
--- Order by:
--- 1. Student Name (A-Z)
--- ==========================================================
-
-SELECT
-    s.full_name AS student_name,
-    s.city
-
-FROM Students AS s
-
-WHERE EXISTS
-(
-    SELECT *
-    FROM Enrollments AS e
-    WHERE e.student_id = s.student_id
-)
-
-ORDER BY
-    student_name ASC;
-
-
-
-    -- ==========================================================
--- GÖREV 11
--- Students Without Any Enrollment
---
--- Find all students who have never enrolled in
--- any course.
---
--- Show:
--- - Student Name
--- - City
---
--- Requirements:
--- - Use NOT EXISTS.
--- - Use a Correlated Subquery.
--- - Do NOT use JOIN in the main query.
---
--- Order by:
--- 1. Student Name (A-Z)
--- ==========================================================
-
-SELECT
-    s.full_name AS student_name,
-    s.city
-
-FROM Students AS s
-
-WHERE NOT EXISTS
-(
-    SELECT 1
-    FROM Enrollments AS e
-    WHERE e.student_id = s.student_id
-)
-
-ORDER BY
-    student_name ASC;
-
+(20, 1, '2025-Fall', 89),
+(20, 5, '2025-Fall', 87),
+(20, 9, '2025-Fall', 90);
