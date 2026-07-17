@@ -1,4 +1,3 @@
-```sql
 -- ==========================================================
 -- Project : TechStore SQL Challenge
 -- File    : schema.sql
@@ -131,4 +130,3 @@ CREATE TABLE order_items (
         REFERENCES products(product_id)
 
 );
-```
