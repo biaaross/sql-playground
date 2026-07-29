@@ -36,7 +36,4 @@ END //
 
 DELIMITER ;
 
-CALL customer_summary(3);
-
-    
-    
+CALL customer_summary(3); 
